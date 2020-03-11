@@ -24,15 +24,15 @@ For CAE, the training loss looks like:
 
 Besides, the outcomes of CAE can be seen below:    
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG" width='350'/>
-</figure>        
-original images (left) and generated images (right) </div>   
+</figure>          
+original images (left) and generated images (right) </div>     
 
 For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss are listed as follows:   
 <div align=center><figure class="third">
 <img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_bceloss.PNG" width='300'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_kldloss.PNG" width='300'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_totalloss.PNG" width='300'/>
-</figure></div>     
+</figure></div>      
 
-In addition, the video generated through linear interpolation is here:   
+Last but not least, the video generated via linear interpolation is here:   
 <div align=center><img src='https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_video.gif'></div>
 
 
