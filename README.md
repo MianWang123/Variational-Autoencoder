@@ -20,16 +20,15 @@ The UT Zappos50K Dataset used here contains 4 types of images, i.e. Boots, Sanda
 
 ### Data Visualization
 For CAE, the training loss looks like:   
-<div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_loss.PNG" width='350'/></div>    
+<div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_loss.PNG" width='320'/></div>    
 
 Besides, the outcomes of CAE can be seen below:    
-<div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG" width='350'/>
-</figure>          
+<div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG" width='350'/>  
 original images (left) and generated images (right) </div>     
 
 For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss are listed as follows:   
 <div align=center><figure class="third">
-<img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_bceloss.PNG" width='300'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_kldloss.PNG" width='300'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_totalloss.PNG" width='300'/>
+<img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_bceloss.PNG" width='270'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_kldloss.PNG" width='270'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_totalloss.PNG" width='270'/>
 </figure></div>      
 
 Last but not least, the video generated via linear interpolation is here:   
