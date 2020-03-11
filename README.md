@@ -19,6 +19,13 @@ The UT Zappos50K Dataset used here contains 4 types of images, i.e. Boots, Sanda
 
 
 ### Data Visualization
+For CAE, the training loss looks like:  
+
+Besides, the original images (left) and generated images (right) are shown below:  
+
+For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss are listed as follows:  
+
+In addition, the video generated through linear interpolation is here:  
 
 
 
