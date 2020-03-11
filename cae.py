@@ -23,17 +23,17 @@ from PIL import Image
 from torch.utils.data.sampler import SubsetRandomSampler
 from torchsummary import summary
 
-# set GPU for usage
+# set up GPU to run code
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'gpu')
-# launch tensorboard here
+# launch tensorboard for training loss supervision
 %load_ext tensorboard
 
-# import data set from 5 different folders
+# Step 1: import data set from 5 different folders
 UT_transforms = transforms.Compose([ transforms.Resize((100, 100)),
                                      transforms.ToTensor()        ])
 UT_dataset = dset.ImageFolder(root='DATASETS/UTZappos50K', transform=UT_transforms)
 
-# divide data into training set, validation set, and test set(7:2:1)
+# Step 2: divide data into training set, validation set, and test set(7:2:1)
 idx = list(range(len(UT_dataset)))
 np.random.shuffle(idx)
 split1, split2 = int(np.floor(len(idx)*0.7)), int(np.floor(len(idx)*0.9))
@@ -47,7 +47,7 @@ ut_train_loader = DataLoader(UT_dataset, batch_size=batch_size, sampler=ut_train
 ut_val_loader = DataLoader(UT_dataset, batch_size=batch_size, sampler=ut_val_sampler)
 ut_test_loader = DataLoader(UT_dataset, batch_size=batch_size, sampler=ut_test_sampler)
 
-# develop CAE network
+# Step 3: establish CAE network
 class CAE(nn.Module):
   def __init__(self):
     super(CAE, self).__init__()
@@ -69,13 +69,14 @@ class CAE(nn.Module):
     z = self.encoder(x)
     recon_x = self.decoder(z)
     return recon_x   
-    
+
+# set optimizer and loss function, use summary to check the network
 model_cae = CAE().to(device)
 optimizer = torch.optim.Adam(model_cae.parameters(), lr=0.001)
 criterion = nn.MSELoss()
 summary(model_cae, (3,100,100))
 
-# train data with cae model
+# Step 4: train data with cae model, send training loss to tensorboard for supervision
 epochs = 20
 logger5 = SummaryWriter('logs/CAE')
 for epoch in range(epochs):
@@ -83,7 +84,6 @@ for epoch in range(epochs):
   for i, (x,_) in enumerate(ut_train_loader):
     x = x.to(device)
     optimizer.zero_grad()
-
     recon_x = model_cae(x)
     loss = criterion(recon_x, x)
     loss.backward()
@@ -93,7 +93,7 @@ for epoch in range(epochs):
   logger5.add_scalar('training loss', Loss, epoch)
   print(f'Epoch: {epoch+1} Training Loss: {Loss}')
 
-# randomly pick 5 images from the dataset, use the trained model to print fake images
+# Step 5: randomly pick 5 images from the dataset, use the trained model to generate fake images
 indices = np.random.choice(len(UT_dataset), 5, replace=False)
 original_imgs = torch.empty([5,3,100,100], dtype=torch.float32)
 reconstruct_imgs = torch.empty([5,3,100,100], dtype=torch.float32)
@@ -105,7 +105,8 @@ for i in indices:
   recon_x = model_cae.decoder(z) 
   reconstruct_imgs[count] = recon_x.data.cpu()
   count += 1
-
+  
+# print original and generated images
 plt.figure(figsize=(10,15))
 for j in range(5):
   plt.subplot(5,2,2*j+1)
