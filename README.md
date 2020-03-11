@@ -4,7 +4,7 @@ Generative Models: Convolutional Autoencoders and Variational Autoencoders
 
 ### Task and Model
 
-The task is to generate similar images(fake) according to given dataset(real images).  
+The task is to generate as similar images (fake images) as the given dataset (real images).  
 The Convolutional AutoEncoder(CAE) and Variational AutoEncoder(VAE) are created here, to reconstruct images for the UT Zappos50K Dataset.
 
 
