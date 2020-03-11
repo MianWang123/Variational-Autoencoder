@@ -23,8 +23,8 @@ For CAE, the training loss looks like:
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_loss.PNG" width='320'/></div>    
 
 Besides, the outcomes of CAE can be seen below:    
-<div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG" width='350'/>  
-original images (left) and generated images (right) </div>     
+<div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG" width='300'/></div>    
+<div align=center>original images (left) and generated images (right)</div>       
 
 For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss are listed as follows:   
 <div align=center><figure class="third">
