@@ -16,7 +16,6 @@ I uploaded the zipped dataset(625 Mb) to Google drive, and used Google Colab to 
 ### Introduction
 
 The UT Zappos50K Dataset used here contains 4 types of images, i.e. Boots, Sandals, Shoes, Slippers. The Adam optimizer was utilized with learning rate of 0.001. As for the loss function, for CAE, I used mean squared loss; For VAE, I used binary cross entropy (reconstruction loss) plus KL-divergence (regularization loss).  
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>  
 <div align=center>$$ L_{reconstruciton} = -\frac{1}{n} \sum_{i}^{n}(x_i log(f(z_i)) + (1 - x_i) log(1 - f(z_i))) $$</div>     
 <div align=center>$$ L_{regularization} = \frac{1}{2n}\sum_{i}^{n}(\mu_{i}^{2} + \sigma_{i}^2 - log(\sigma_i^2) - 1) $$</div>    
 <div align=center>$$ L_{loss} =L_{regularization} + L_{reconstruction} $$</div>   
