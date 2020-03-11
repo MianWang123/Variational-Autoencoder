@@ -23,8 +23,7 @@ For CAE, the training loss looks like:
 ![image](https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_loss.PNG)   
 Besides, the outcomes of CAE can be seen below:
 <figure class="half">
-    <img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic1.PNG">
-    <img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG">
+    <img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic1.PNG"><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG">
 </figure>
 original images (left) and generated images (right)  
 
