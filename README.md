@@ -29,7 +29,7 @@ original images (left) and generated images (right)
 
 For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss are listed as follows:     
 <figure class="third">
-    <img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_bceloss.PNG"><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_kldloss.PNG"><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_totalloss.PNG">
+    <img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_bceloss.PNG" width='200'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_kldloss.PNG" width='200'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_totalloss.PNG" width='200'/>
 </figure>   
 In addition, the video generated through linear interpolation is here:    
 ![image](https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_video.gif)
