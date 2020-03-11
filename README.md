@@ -22,7 +22,9 @@ The UT Zappos50K Dataset used here contains 4 types of images, i.e. Boots, Sanda
 For CAE, the training loss looks like:  
 ![image](https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_loss.PNG)   
 Besides, the outcomes of CAE can be seen below:
-![image](https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic1.PNG)![image](https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG)   
+<center class="half">
+    <img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic1.PNG" width="200"/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG" width="200"/>
+</center>  
 original images (left) and generated images (right)  
 
 For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss are listed as follows:     
