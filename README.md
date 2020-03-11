@@ -10,7 +10,7 @@ The Convolutional AutoEncoder(CAE) and Variational AutoEncoder(VAE) are created 
 
 ### Prerequisites
 
-I uploaded the zipped dataset(625 Mb) to Google drive, and used Google Colab to load & unzip the data, the dataset can be found here https://drive.google.com/file/d/1nYEgytPOkFyUjDQfBGzwCQbszf6OE143/view?usp=sharing. You can also upload the unzipped dataset directly to your Colab, just remember to change the data path in Step 1 --'DATASETS/UTZappos50K'.
+I uploaded the zipped dataset(625 Mb) to Google drive, and used Google Colab to load & unzip the data, the dataset can be found here https://drive.google.com/file/d/1nYEgytPOkFyUjDQfBGzwCQbszf6OE143/view?usp=sharing. You can also directly upload the unzipped dataset to your Colab, just remember to change the path in Step1 -'DATASETS/UTZappos50K'.
 
 
 ### Introduction
