@@ -1,13 +1,3 @@
-# loading google drive from google colab
-import os
-from google.colab import drive
-drive.mount('/content/drive')
-
-# upload the datasets.7z to my drive, and unzip in colab
-DATASETS_PATH = '/content/drive/My Drive/datasets.7z'
-ESCAPED_PATH = DATASETS_PATH.replace(" ", "\\ ") 
-!7z x {ESCAPED_PATH}
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -23,12 +13,21 @@ from PIL import Image
 from torch.utils.data.sampler import SubsetRandomSampler
 from torchsummary import summary
 
-# set up GPU to run code
+# loading google drive from google colab
+import os
+from google.colab import drive
+drive.mount('/content/drive')
+
+# upload the datasets.7z to my drive, and unzip in colab
+DATASETS_PATH = '/content/drive/My Drive/datasets.7z'
+ESCAPED_PATH = DATASETS_PATH.replace(" ", "\\ ") 
+!7z x {ESCAPED_PATH}
+
+# set GPU in google colab and launch tensorboard
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'gpu')
-# launch tensorboard for training loss supervision
 %load_ext tensorboard
 
-# Step 1: import data set from 5 different folders
+# Step 1: import the dataset from 5 different folders
 UT_transforms = transforms.Compose([ transforms.Resize((100, 100)),
                                      transforms.ToTensor()        ])
 UT_dataset = dset.ImageFolder(root='DATASETS/UTZappos50K', transform=UT_transforms)
