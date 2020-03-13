@@ -2,6 +2,7 @@
 
 Generative Models: Convolutional Autoencoders and Variational Autoencoders
 
+
 ### Task and Model
 
 The task is to generate as similar images (fake images) as the given dataset (real images).  
@@ -31,7 +32,7 @@ CAE's outcome display:
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG" width='300'/></div>    
 <div align=center>original images(left) v.s generated images(right)</div>       
 
-For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss are listed as follows:   
+For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss look like:   
 <div align=center><figure class="third">
 <img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_bceloss.PNG" width='270'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_kldloss.PNG" width='270'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_totalloss.PNG" width='270'/>
 </figure></div>  
