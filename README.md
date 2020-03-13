@@ -36,12 +36,10 @@ For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss are listed 
 </figure></div>  
 
 the performance of trained VAE model is shown below:
-<div align=center><figure class="half">
-<img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_orig_img.PNG" width='270'/>  
-original images  
-<img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_gen_img.PNG" width='270'/>  
- generated images
-</figure></div> 
+<div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_orig_img.PNG" width='270'/></div>     
+<div align=center>original images</div>   
+<div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_gen_img.PNG" width='270'/></div>    
+<div align=center>generated images(right)</div>  
 <div align=center>original images(left) v.s generated images(right)</div>  
 
 Last but not least, the video obtained from linear interpolation:   
