@@ -1,13 +1,3 @@
-# loading google drive from google colab
-import os
-from google.colab import drive
-drive.mount('/content/drive')
-
-# upload the datasets.7z to my drive, and unzip in colab
-DATASETS_PATH = '/content/drive/My Drive/datasets.7z'
-ESCAPED_PATH = DATASETS_PATH.replace(" ", "\\ ") 
-!7z x {ESCAPED_PATH}
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -23,17 +13,29 @@ from PIL import Image
 from torch.utils.data.sampler import SubsetRandomSampler
 from torchsummary import summary
 
-# set up GPU to run code
+# loading google drive from google colab
+import os
+from google.colab import drive
+drive.mount('/content/drive')
+
+# upload the datasets.7z to my drive, and unzip in colab
+DATASETS_PATH = '/content/drive/My Drive/datasets.7z'
+ESCAPED_PATH = DATASETS_PATH.replace(" ", "\\ ") 
+!7z x {ESCAPED_PATH}
+
+
+# Step 0: Set GPU in google colab and launch tensorboard
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'gpu')
-# launch tensorboard for training loss supervision
 %load_ext tensorboard
 
-# Step 1: import data set from 5 different folders
+
+# Step 1: Import the dataset from 5 different folders
 UT_transforms = transforms.Compose([ transforms.Resize((100, 100)),
                                      transforms.ToTensor()        ])
 UT_dataset = dset.ImageFolder(root='DATASETS/UTZappos50K', transform=UT_transforms)
 
-# Step 2: divide data into training set, validation set, and test set(7:2:1)
+
+# Step 2: Divide data into training set, validation set, and test set(7:2:1), then set batch size to 64
 idx = list(range(len(UT_dataset)))
 np.random.shuffle(idx)
 split1, split2 = int(np.floor(len(idx)*0.7)), int(np.floor(len(idx)*0.9))
@@ -41,13 +43,13 @@ ut_train_sampler = SubsetRandomSampler(idx[:split1])
 ut_val_sampler = SubsetRandomSampler(idx[split1:split2])
 ut_test_sampler = SubsetRandomSampler(idx[split2:])
 
-# set mini-batch size to 64
 batch_size = 64
 ut_train_loader = DataLoader(UT_dataset, batch_size=batch_size, sampler=ut_train_sampler)
 ut_val_loader = DataLoader(UT_dataset, batch_size=batch_size, sampler=ut_val_sampler)
 ut_test_loader = DataLoader(UT_dataset, batch_size=batch_size, sampler=ut_test_sampler)
 
-# Step 3: establish VAE network (encoder, reparametrizaion, decoder)
+
+# Step 3: Establish VAE network (encoder, reparametrizaion, decoder)
 class VAE(nn.Module):
   def __init__(self):
     super(VAE, self).__init__()
@@ -92,11 +94,13 @@ class VAE(nn.Module):
     
 model_vae = VAE().to(device)
 
-# Step 4: pick Adam as optimizer, use summary to check the network
+
+# Step 4: Pick Adam as optimizer, use summary to check the network
 optimizer = torch.optim.Adam(model_vae.parameters(), lr=0.001)
 summary(model_vae, (3,100,100))
 
-# Step 5: define loss function (BCE+KLD), the ratio 0.1 was added during hyperparameter tunning.
+
+# Step 5: Define loss function (BCE+KLD), the ratio 0.1 was added during hyperparameter tunning.
 def loss_func(recon_x, x, mu, log_var):
   # reconstruction loss
   RCL = F.binary_cross_entropy(recon_x, x, reduction='sum')
@@ -105,7 +109,8 @@ def loss_func(recon_x, x, mu, log_var):
   KLD = 0.5 * torch.sum(mu**2 + log_var.exp() - 1 - log_var)
   return RCL+0.1*KLD, RCL, KLD
 
-# Step 6: Displays the images in a rows * cols grid
+
+# Step 6: Displays the images in a (rows * cols) grid
 def generate_images(imgs, rows, cols, name=None, show=True):
   imgs = imgs[:rows*cols].cpu().detach()
   fig, ax = plt.subplots(rows, cols)
@@ -125,18 +130,16 @@ def generate_images(imgs, rows, cols, name=None, show=True):
   if(show): plt.show()
   else: plt.close()
   
-# Step 7: train data with vae model, and periodically plot generated images to ensure they're becoming sharper
-epochs = 25
+  
+# Step 7: Train data with vae model, and periodically plot generated images to ensure they're becoming sharper
 logger = SummaryWriter('logs/VAE')
+epochs = 25
 for epoch in range(epochs):
-  RCL_Loss = 0
-  KLD_Loss = 0
-  Loss = 0
+  RCL_Loss, KLD_Loss, Loss = 0, 0, 0
   total = 0
   for i, (x,_) in enumerate(ut_train_loader):
     x = x.to(device)
     optimizer.zero_grad()
-
     recon_x, mu, log_var = model_vae(x)
     loss, RCL, KLD = loss_func(recon_x, x, mu, log_var)
     loss.backward()
@@ -157,26 +160,28 @@ for epoch in range(epochs):
 
 %tensorboard  --logdir 'logs/VAE'
 
-# Step 8: randomly pick 5 images from the dataset, use the trained model to generate fake images
+
+# Step 8: Randomly pick 5 images from the dataset, use the trained model to generate fake images
 indices = np.random.choice(len(UT_dataset), 5, replace=False)
-original_imgs1 = torch.empty([5,3,100,100], dtype=torch.float32)
-reconstruct_imgs1 = torch.empty([5,3,100,100], dtype=torch.float32)
+original_imgs = torch.empty([5,3,100,100], dtype=torch.float32)
+reconstruct_imgs = torch.empty([5,3,100,100], dtype=torch.float32)
 count = 0
 for i in indices:
-  original_imgs1[count] = UT_dataset[i][0] 
+  original_imgs[count] = UT_dataset[i][0] 
   x = UT_dataset[i][0].unsqueeze(0).to(device)
   recon_x, mu, log_var = model_vae(x) 
-  reconstruct_imgs1[count] = recon_x.data.cpu()
+  reconstruct_imgs[count] = recon_x.data.cpu()
   count += 1
   
 # print original and generated images
 plt.figure(figsize=(10,15))
 for j in range(5):
   plt.subplot(5,2,2*j+1)
-  plt.imshow(original_imgs1[j].permute(1,2,0))
+  plt.imshow(original_imgs[j].permute(1,2,0))
   plt.subplot(5,2,2*j+2)
-  plt.imshow(reconstruct_imgs1[j].permute(1,2,0))
+  plt.imshow(reconstruct_imgs[j].permute(1,2,0))
 plt.savefig('vae.png')
+
 
 # Step 9: Randomly pick 2 images, use linear interpolation of their latent vector, to generate a video
 for i, (x,_) in enumerate(ut_test_loader):
