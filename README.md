@@ -38,7 +38,7 @@ VAE's outcome display:
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_orig_img.PNG" width='270'/></div>     
 <div align=center>original images</div>   
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_gen_img.PNG" width='270'/></div>    
-<div align=center>generated images(right)</div>   
+<div align=center>generated images</div>   
 
 In addition, the video obtained from linear interpolation:   
 <div align=center><img src='https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_video.gif'></div>
