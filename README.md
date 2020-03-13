@@ -24,7 +24,7 @@ The UT Zappos50K Dataset used here contains 4 types of images, i.e. Boots, Sanda
 For CAE, the training loss looks like:   
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_loss.PNG" width='320'/></div>    
 
-the outcome display of trained CAE shown below:    
+CAE's outcome display:    
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG" width='300'/></div>    
 <div align=center>original images(left) v.s generated images(right)</div>       
 
@@ -34,7 +34,7 @@ For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss are listed 
 <img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_bceloss.PNG" width='270'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_kldloss.PNG" width='270'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_totalloss.PNG" width='270'/>
 </figure></div>  
 
-the outcome display of trained VAE shown below:
+VAE's outcome display: 
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_orig_img.PNG" width='270'/></div>     
 <div align=center>original images</div>   
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_gen_img.PNG" width='270'/></div>    
