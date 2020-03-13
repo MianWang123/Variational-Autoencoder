@@ -23,16 +23,19 @@ DATASETS_PATH = '/content/drive/My Drive/datasets.7z'
 ESCAPED_PATH = DATASETS_PATH.replace(" ", "\\ ") 
 !7z x {ESCAPED_PATH}
 
-# set GPU in google colab and launch tensorboard
+
+# Step 0: set GPU in google colab and launch tensorboard
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'gpu')
 %load_ext tensorboard
+
 
 # Step 1: import the dataset from 5 different folders
 UT_transforms = transforms.Compose([ transforms.Resize((100, 100)),
                                      transforms.ToTensor()        ])
 UT_dataset = dset.ImageFolder(root='DATASETS/UTZappos50K', transform=UT_transforms)
 
-# Step 2: divide data into training set, validation set, and test set(7:2:1)
+
+# Step 2: divide data into training set, validation set, and test set(7:2:1), then set batch size to 64
 idx = list(range(len(UT_dataset)))
 np.random.shuffle(idx)
 split1, split2 = int(np.floor(len(idx)*0.7)), int(np.floor(len(idx)*0.9))
@@ -40,11 +43,11 @@ ut_train_sampler = SubsetRandomSampler(idx[:split1])
 ut_val_sampler = SubsetRandomSampler(idx[split1:split2])
 ut_test_sampler = SubsetRandomSampler(idx[split2:])
 
-# set mini-batch size to 64
 batch_size = 64
 ut_train_loader = DataLoader(UT_dataset, batch_size=batch_size, sampler=ut_train_sampler)
 ut_val_loader = DataLoader(UT_dataset, batch_size=batch_size, sampler=ut_val_sampler)
 ut_test_loader = DataLoader(UT_dataset, batch_size=batch_size, sampler=ut_test_sampler)
+
 
 # Step 3: establish CAE network
 class CAE(nn.Module):
@@ -68,16 +71,19 @@ class CAE(nn.Module):
     z = self.encoder(x)
     recon_x = self.decoder(z)
     return recon_x   
-
-# set optimizer and loss function, use summary to check the network
+  
 model_cae = CAE().to(device)
+
+
+# Step 4: set optimizer and loss function, use summary to check the network
 optimizer = torch.optim.Adam(model_cae.parameters(), lr=0.001)
 criterion = nn.MSELoss()
 summary(model_cae, (3,100,100))
 
-# Step 4: train data with cae model, send training loss to tensorboard for supervision
+
+# Step 5: train data with cae model, send training loss to tensorboard for supervision
 epochs = 20
-logger5 = SummaryWriter('logs/CAE')
+logger = SummaryWriter('logs/CAE')
 for epoch in range(epochs):
   Loss = 0
   for i, (x,_) in enumerate(ut_train_loader):
@@ -89,13 +95,15 @@ for epoch in range(epochs):
     optimizer.step()
     Loss += loss.item()
 
-  logger5.add_scalar('training loss', Loss, epoch)
+  logger.add_scalar('training loss', Loss, epoch)
   print(f'Epoch: {epoch+1} Training Loss: {Loss}')
 
-# Step 5: randomly pick 5 images from the dataset, use the trained model to generate fake images
+  
+# Step 6: randomly pick 5 images from the dataset, use the trained model to generate fake images
 indices = np.random.choice(len(UT_dataset), 5, replace=False)
 original_imgs = torch.empty([5,3,100,100], dtype=torch.float32)
 reconstruct_imgs = torch.empty([5,3,100,100], dtype=torch.float32)
+
 count = 0
 for i in indices:
   original_imgs[count] = UT_dataset[i][0] 
