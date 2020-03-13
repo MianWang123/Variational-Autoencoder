@@ -18,9 +18,9 @@ I uploaded the zipped dataset(625 Mb) to Google drive, and used Google Colab to 
 The UT Zappos50K Dataset used here contains 4 types of images, i.e. Boots, Sandals, Shoes, Slippers.   
 The Adam optimizer was utilized with learning rate of 0.001.   
 As for the loss function, for CAE, I used mean squared loss; For VAE, I used binary cross entropy (reconstruction loss) plus KL-divergence (regularization loss).    
-<div align=center><img src="http://chart.googleapis.com/chart?cht=tx&chl= L_{reconstruciton} = -\frac{1}{n} \sum_{i}^{n}(x_i log(f(z_i)) +%2B (1 - x_i) log(1 - f(z_i)))" style="border:none;"></div>   
-<div align=center><img src="http://chart.googleapis.com/chart?cht=tx&chl= L_{regularization} = \frac{1}{2n}\sum_{i}^{n}(\mu_{i}^{2} + \sigma_{i}^2 - log(\sigma_i^2) - 1)" style="border:none;"></div>    
-<div align=center><img src="http://chart.googleapis.com/chart?cht=tx&chl= L_{loss} =L_{regularization} + L_{reconstruction}" style="border:none;"></div>    
+<div align=center><img src="http://chart.googleapis.com/chart?cht=tx&chl= L_{reconstruciton} = -\frac{1}{n} \sum_{i}^{n}(x_i log(f(z_i)) %2B (1 - x_i) log(1 - f(z_i)))" style="border:none;"></div>   
+<div align=center><img src="http://chart.googleapis.com/chart?cht=tx&chl= L_{regularization} = \frac{1}{2n}\sum_{i}^{n}(\mu_{i}^{2} %2B \sigma_{i}^2 - log(\sigma_i^2) - 1)" style="border:none;"></div>    
+<div align=center><img src="http://chart.googleapis.com/chart?cht=tx&chl= L_{loss} = L_{regularization} %2B L_{reconstruction}" style="border:none;"></div>    
  
 ### Data Visualization
 For CAE, the training loss looks like:   
