@@ -24,18 +24,18 @@ ESCAPED_PATH = DATASETS_PATH.replace(" ", "\\ ")
 !7z x {ESCAPED_PATH}
 
 
-# Step 0: set GPU in google colab and launch tensorboard
+# Step 0: Set GPU in google colab and launch tensorboard
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'gpu')
 %load_ext tensorboard
 
 
-# Step 1: import the dataset from 5 different folders
+# Step 1: Import the dataset from 5 different folders
 UT_transforms = transforms.Compose([ transforms.Resize((100, 100)),
                                      transforms.ToTensor()        ])
 UT_dataset = dset.ImageFolder(root='DATASETS/UTZappos50K', transform=UT_transforms)
 
 
-# Step 2: divide data into training set, validation set, and test set(7:2:1), then set batch size to 64
+# Step 2: Divide data into training set, validation set, and test set(7:2:1), then set batch size to 64
 idx = list(range(len(UT_dataset)))
 np.random.shuffle(idx)
 split1, split2 = int(np.floor(len(idx)*0.7)), int(np.floor(len(idx)*0.9))
@@ -49,7 +49,7 @@ ut_val_loader = DataLoader(UT_dataset, batch_size=batch_size, sampler=ut_val_sam
 ut_test_loader = DataLoader(UT_dataset, batch_size=batch_size, sampler=ut_test_sampler)
 
 
-# Step 3: establish CAE network
+# Step 3: Establish CAE network
 class CAE(nn.Module):
   def __init__(self):
     super(CAE, self).__init__()
@@ -75,13 +75,13 @@ class CAE(nn.Module):
 model_cae = CAE().to(device)
 
 
-# Step 4: set optimizer and loss function, use summary to check the network
+# Step 4: Set optimizer and loss function, use summary to check the network
 optimizer = torch.optim.Adam(model_cae.parameters(), lr=0.001)
 criterion = nn.MSELoss()
 summary(model_cae, (3,100,100))
 
 
-# Step 5: train data with cae model, send training loss to tensorboard for supervision
+# Step 5: Train data with cae model, send training loss to tensorboard for supervision
 epochs = 20
 logger = SummaryWriter('logs/CAE')
 for epoch in range(epochs):
@@ -99,7 +99,7 @@ for epoch in range(epochs):
   print(f'Epoch: {epoch+1} Training Loss: {Loss}')
 
   
-# Step 6: randomly pick 5 images from the dataset, use the trained model to generate fake images
+# Step 6: Randomly pick 5 images from the dataset, use the trained model to generate fake images
 indices = np.random.choice(len(UT_dataset), 5, replace=False)
 original_imgs = torch.empty([5,3,100,100], dtype=torch.float32)
 reconstruct_imgs = torch.empty([5,3,100,100], dtype=torch.float32)
