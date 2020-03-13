@@ -21,26 +21,24 @@ The UT Zappos50K Dataset used here contains 4 types of images, i.e. Boots, Sanda
 <div align=center>$$ L_{loss} =L_{regularization} + L_{reconstruction} $$</div>   
  
 ### Data Visualization
-#### CAE outcome display
 For CAE, the training loss looks like:   
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_loss.PNG" width='320'/></div>    
 
-the performance of trained CAE model can be seen below:    
+the outcome display of trained CAE shown below:    
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG" width='300'/></div>    
 <div align=center>original images(left) v.s generated images(right)</div>       
 
-#### VAE outcome display
+
 For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss are listed as follows:   
 <div align=center><figure class="third">
 <img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_bceloss.PNG" width='270'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_kldloss.PNG" width='270'/><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_totalloss.PNG" width='270'/>
 </figure></div>  
 
-the performance of trained VAE model is shown below:
+the outcome display of trained VAE shown below:
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_orig_img.PNG" width='270'/></div>     
 <div align=center>original images</div>   
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_gen_img.PNG" width='270'/></div>    
-<div align=center>generated images(right)</div>  
-<div align=center>original images(left) v.s generated images(right)</div>  
+<div align=center>generated images(right)</div>   
 
-Last but not least, the video obtained from linear interpolation:   
+In addition, the video obtained from linear interpolation:   
 <div align=center><img src='https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_video.gif'></div>
