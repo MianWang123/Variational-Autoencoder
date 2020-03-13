@@ -22,6 +22,7 @@ As for the loss function, for CAE, I used mean squared loss; For VAE, I used bin
 <div align=center><img src="http://chart.googleapis.com/chart?cht=tx&chl= L_{regularization} = \frac{1}{2n}\sum_{i}^{n}(\mu_{i}^{2} %2B \sigma_{i}^2 - log(\sigma_i^2) - 1)" style="border:none;"></div>    
 <div align=center><img src="http://chart.googleapis.com/chart?cht=tx&chl= L_{loss} = L_{regularization} %2B L_{reconstruction}" style="border:none;"></div>    
  
+ 
 ### Data Visualization
 For CAE, the training loss looks like:   
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_loss.PNG" width='320'/></div>    
@@ -29,7 +30,6 @@ For CAE, the training loss looks like:
 CAE's outcome display:    
 <div align=center><img src="https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/cae_pic2.PNG" width='300'/></div>    
 <div align=center>original images(left) v.s generated images(right)</div>       
-
 
 For VAE, the Reconstruction Loss, KL-Divergence Loss, and total loss are listed as follows:   
 <div align=center><figure class="third">
@@ -44,3 +44,8 @@ VAE's outcome display:
 
 In addition, the video obtained from linear interpolation:   
 <div align=center><img src='https://github.com/MianWang123/Variational-Autoencoder/blob/master/pics/vae_video.gif'></div>
+<div align=center>image transforming gif</div> 
+
+
+### Acknowledge  
+Special thanks to CIS522 course's TA and professor, for providing the data set and guidance of the training process
