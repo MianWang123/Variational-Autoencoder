@@ -1,3 +1,8 @@
+"""
+CIS522-Deep Learning for Data Science: Variational Autoencoder
+Author: Mian Wang  
+Time: 3/2/20
+"""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
