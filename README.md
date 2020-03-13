@@ -20,6 +20,7 @@ The UT Zappos50K Dataset used here contains 4 types of images, i.e. Boots, Sanda
 <div align=center>$$ L_{regularization} = \frac{1}{2n}\sum_{i}^{n}(\mu_{i}^{2} + \sigma_{i}^2 - log(\sigma_i^2) - 1) $$</div>    
 <div align=center>$$ L_{loss} =L_{regularization} + L_{reconstruction} $$</div>   
 <img src="http://www.forkosh.com/mathtex.cgi? L_{reconstruciton} = -\frac{1}{n} \sum_{i}^{n}(x_i log(f(z_i)) + (1 - x_i) log(1 - f(z_i)))">
+<img src="http://chart.googleapis.com/chart?cht=tx&chl= L_{reconstruciton} = -\frac{1}{n} \sum_{i}^{n}(x_i log(f(z_i)) + (1 - x_i) log(1 - f(z_i)))" style="border:none;">
  
 ### Data Visualization
 For CAE, the training loss looks like:   
